@@ -18,5 +18,19 @@ class FirestoreRepository {
         }
     }
 
+    suspend fun obtenerProductos(): Result<List<Producto>> {
+        return try {
+            val snapshot = coleccion.get().await()
+            val productos = snapshot.map { doc ->
+                doc.toObject(Producto::class.java).copy(id = doc.id)
+            }
+            Result.success(productos)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+
+
 
 }
