@@ -20,30 +20,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-            val navController = rememberNavController()
-            var startDestination = "login"
-
-            NavHost(
-                navController = navController,
-                startDestination = startDestination,
-                modifier = Modifier.fillMaxSize()
-
-            ) {
-
-                composable( route = "login") {
-                    LoginScreen(navController = navController)
-                }
-
-                composable(route = "register") {
-                    RegisterScreen(navController = navController)
-                }
-
-                composable(route = "home") {
-                    HomeScreen(navController = navController)
-                }
-
-                   }
+        setContent {UnabShopTheme {
+            NavigationApp()
+        }
                 }
             }
         }
