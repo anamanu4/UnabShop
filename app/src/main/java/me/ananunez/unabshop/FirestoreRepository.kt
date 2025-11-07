@@ -30,7 +30,14 @@ class FirestoreRepository {
         }
     }
 
-
+    suspend fun eliminarProducto(id: String): Result<Unit> {
+        return try {
+            coleccion.document(id).delete().await()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 
 
 }
